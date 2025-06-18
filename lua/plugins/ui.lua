@@ -94,4 +94,8 @@ return {
       })
     end,
   },
+  {
+    "echasnovski/mini.icons",
+  },
+  { "MunifTanjim/nui.nvim", lazy = true },
 }
