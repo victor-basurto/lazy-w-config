@@ -3,3 +3,5 @@
 -- Add any additional options here
 local opt = vim.opt
 opt.conceallevel = 1
+opt.swapfile = false -- do not swapfile in buffer
+opt.backup = false -- do not backup file

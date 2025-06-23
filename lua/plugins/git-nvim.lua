@@ -1,5 +1,14 @@
 return {
   {
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      lazygit = {
+        -- empty for default config
+      },
+    },
+  },
+  {
     "tpope/vim-fugitive",
   },
   {

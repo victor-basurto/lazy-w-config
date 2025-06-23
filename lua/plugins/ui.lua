@@ -77,8 +77,15 @@ return {
       },
     },
   },
+  { "echasnovski/mini.icons" },
+
+  -- WARNING: Plugins below are currently disabled due to broken functionality or
+  -- not useful in my configuration. Consider REMOVE
+
+  -- BUG: stay-centered is broken when mapping `gg` | `G`
   {
     "arnamak/stay-centered.nvim",
+    enabled = false,
     config = function()
       require("stay-centered").setup({
         -- The filetype is determined by the vim filetype, not the file extension. In order to get the filetype, open a file and run the command:
@@ -94,8 +101,4 @@ return {
       })
     end,
   },
-  {
-    "echasnovski/mini.icons",
-  },
-  { "MunifTanjim/nui.nvim", lazy = true },
 }
