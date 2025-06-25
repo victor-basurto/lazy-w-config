@@ -114,6 +114,9 @@ return {
       return out
     end,
 
+    ui = {
+      enable = false,
+    },
     -- templates configuration
     templates = {
       folder = "templates",
