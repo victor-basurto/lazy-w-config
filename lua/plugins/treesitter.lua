@@ -24,6 +24,24 @@ return {
         "vim",
         "yaml",
       },
+      ignore_install = {},
+      highlight = { enable = true },
+      indent = { enable = true },
+      auto_install = true,
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+          },
+        },
+      },
+      sync_install = false,
+      modules = {},
     },
   },
 }
