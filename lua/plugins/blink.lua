@@ -13,12 +13,16 @@ return {
   },
   {
     "saghen/blink.cmp",
+    enabled = true,
     opts_extend = {
       "sources.completion.enabled_providers",
       "sources.compat",
       "sources.default",
     },
     dependencies = {
+      "moyiz/blink-emoji.nvim",
+      "Kaiser-Yang/blink-cmp-dictionary",
+      "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
       -- add blink.compat to dependencies
       {
