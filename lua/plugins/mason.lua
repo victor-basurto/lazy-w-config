@@ -1,7 +1,8 @@
 ---@diagnostic disable: missing-fields
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    version = "2.0.0",
     opts = {
       ensure_installed = {
         "gitui",
@@ -23,34 +24,33 @@ return {
         },
       },
     },
-    config = function()
-      require("mason").setup()
-    end,
   },
   {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "astro",
-          "bashls",
-          "cssls",
-          "eslint",
-          "graphql",
-          "html",
-          "jsonls",
-          "lua_ls",
-          "powershell_es",
-          "prismals",
-          "sqlls",
-          "ts_ls",
-          "vimls",
-          "lemminx",
-          "yamlls",
-          "omnisharp",
-        },
-      })
-    end,
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+    opts = {
+      ensure_installed = {
+        "astro",
+        "bashls",
+        "cssls",
+        "eslint",
+        "graphql",
+        "html",
+        "jsonls",
+        "lua_ls",
+        "powershell_es",
+        "prismals",
+        "sqlls",
+        "ts_ls",
+        "vimls",
+        "lemminx",
+        "yamlls",
+        "omnisharp",
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
