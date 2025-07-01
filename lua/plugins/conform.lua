@@ -2,6 +2,16 @@ return {
   "stevearc/conform.nvim",
   dependencies = { "mason.nvim" },
   lazy = true,
+  keys = {
+    {
+      "<leader>ccf",
+      function()
+        require("conform").format({ async = true, lsp_fallback = true })
+      end,
+      mode = "n",
+      desc = "Format buffer (conform)",
+    },
+  },
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
