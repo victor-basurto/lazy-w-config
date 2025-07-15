@@ -9,6 +9,8 @@
 
 local api = vim.api
 
+api.nvim_set_hl(0, "markdowndH1", { bg = "#55FF55" })
+
 api.nvim_create_autocmd("FileType", {
   pattern = { "json", "jsonc" },
   callback = function()
