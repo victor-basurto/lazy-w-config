@@ -5,8 +5,8 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      trasnparent_background = true,
-      flavour = "frappe",
+      transparent_background = false,
+      flavour = "macchiato",
     },
   },
   {
@@ -17,11 +17,16 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
-    options = true,
+    event = "VeryLazy",
+    priority = 1000,
+    after = "catppuccin",
     opts = function(_, opts)
+      -- Your custom configuration
       if (vim.g.colors_name or ""):find("catppuccin") then
-        opts.highlights = require("catppuccin.groups.integrations.bufferline").get()
+        opts.highlights = require("catppuccin.groups.integrations.bufferline").get_theme()
       end
+      -- Add any other custom options here
+      return opts
     end,
   },
 }
