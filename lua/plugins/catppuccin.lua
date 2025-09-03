@@ -1,32 +1,39 @@
 return {
   {
     "catppuccin/nvim",
-    lazy = true,
     name = "catppuccin",
+    event = "VeryLazy",
     priority = 1000,
-    opts = {
-      transparent_background = false,
-      flavour = "macchiato",
-    },
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin",
-    },
+    config = function()
+      local catppuccin = require("catppuccin")
+      catppuccin.setup({
+        transparent_background = true,
+        float = {
+          transparent = false,
+          solid = false,
+        },
+        flavour = "frappe",
+        integrations = {
+          bufferline = {
+            enabled = true,
+            highlights = true, -- get highlights for bufferline
+            style = "default", -- "default" | "minimal" (optional)
+          },
+        },
+      })
+
+      vim.cmd("colorscheme catppuccin")
+    end,
   },
   {
     "akinsho/bufferline.nvim",
-    event = "VeryLazy",
-    priority = 1000,
     after = "catppuccin",
-    opts = function(_, opts)
-      -- Your custom configuration
-      if (vim.g.colors_name or ""):find("catppuccin") then
-        opts.highlights = require("catppuccin.groups.integrations.bufferline").get_theme()
-      end
-      -- Add any other custom options here
-      return opts
+    lazy = false,
+    config = function()
+      local bflineCatppuccin = require("catppuccin.groups.integrations.bufferline")
+      require("bufferline").setup({
+        highlights = bflineCatppuccin.get_theme(),
+      })
     end,
   },
 }
