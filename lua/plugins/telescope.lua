@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
+    branch = "master",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
@@ -30,12 +30,6 @@ return {
           layout_config = {
             preview_cutoff = 9999,
           },
-        },
-        find_files = {
-          previewer = true,
-        },
-        git_files = {
-          previewer = false,
         },
       }
 
