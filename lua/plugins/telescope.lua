@@ -1,17 +1,18 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
+    branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     config = function(_, opts)
       local telescope = require("telescope")
       local actions = require("telescope.actions")
       local fb_actions = require("telescope").extensions.file_browser.actions
 
-      opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
         wrap_results = true,
         layout_strategy = "horizontal",
         layout_config = { prompt_position = "top" },
@@ -21,6 +22,7 @@ return {
           n = {},
         },
       })
+
       opts.pickers = {
         diagnostics = {
           theme = "ivy",
@@ -29,11 +31,17 @@ return {
             preview_cutoff = 9999,
           },
         },
+        find_files = {
+          previewer = true,
+        },
+        git_files = {
+          previewer = false,
+        },
       }
+
       opts.extensions = {
         file_browser = {
           theme = "dropdown",
-          -- force telescope_file_browser
           hijack_netrw = true,
           mappings = {
             ["n"] = {
@@ -43,12 +51,12 @@ return {
                 vim.cmd("startinsert")
               end,
               ["<C-u>"] = function(prompt_bufnr)
-                for i = 1, 10 do
+                for _ = 1, 10 do
                   actions.move_selection_previous(prompt_bufnr)
                 end
               end,
               ["<C-d>"] = function(prompt_bufnr)
-                for i = 1, 10 do
+                for _ = 1, 10 do
                   actions.move_selection_next(prompt_bufnr)
                 end
               end,
@@ -57,24 +65,14 @@ return {
             },
           },
         },
-      }
-      telescope.setup(opts)
-      require("telescope").load_extension("file_browser")
-    end,
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    config = function()
-      require("telescope").setup({
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({
-              -- custom opts
-            }),
-          },
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown({}),
         },
-      })
-      require("telescope").load_extension("ui-select")
+      }
+
+      telescope.setup(opts)
+      telescope.load_extension("file_browser")
+      telescope.load_extension("ui-select")
     end,
   },
 }
