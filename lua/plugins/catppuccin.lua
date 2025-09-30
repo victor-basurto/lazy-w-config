@@ -29,7 +29,7 @@ return {
       optional = true,
       opts = function(_, opts)
         if (vim.g.colors_name or ""):find("catppuccin") then
-          opts.highlights = require("catppuccin.groups.integrations.bufferline").get_theme()
+          opts.highlights = require("catppuccin.special.bufferline").get_theme()
         end
       end,
     },
@@ -39,7 +39,7 @@ return {
     after = "catppuccin",
     lazy = false,
     config = function()
-      local bflineCatppuccin = require("catppuccin.groups.integrations.bufferline")
+      local bflineCatppuccin = require("catppuccin.special.bufferline")
       require("bufferline").setup({
         highlights = bflineCatppuccin.get_theme(),
       })
