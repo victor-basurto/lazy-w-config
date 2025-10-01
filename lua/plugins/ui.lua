@@ -96,7 +96,19 @@ return {
           },
         },
       },
-      image = {},
+      image = {
+        enabled = true,
+        doc = {
+          inline = false,
+          float = true,
+        },
+      },
+    },
+    styles = {
+      snacks_image = {
+        relative = "editor",
+        col = -1,
+      },
     },
   },
 }
