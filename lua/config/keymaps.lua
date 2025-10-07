@@ -71,6 +71,26 @@ keymap.set("n", "<C-j>", function()
   vim.diagnostic.get_next({ buffer = 0, severity = vim.diagnostic.severity.ERROR })
 end)
 
+-- strikethrough command
+keymap.set("n", "<leader>ts", function()
+  local line = vim.fn.getline(".")
+  -- get line without leading/trailing spaces
+  local trimmed = line:match("^%s*(.-)%s*$")
+  if trimmed == "" then
+    return
+  end
+  -- check if already has strikethrough
+  if trimmed:match("^~.*~$") then
+    -- remove strikethrough
+    local content = trimmed:match("^~(.*)~$")
+    local indent = line:match("^(%s*)")
+    vim.fn.setline(".", indent .. content)
+  else
+    -- add strikethrough
+    local indent = line:match("^(%s*)")
+    vim.fn.setline(".", indent .. "~" .. trimmed .. "~")
+  end
+end, { desc = "[Text strikethrough] toggle strikethrough line" })
 -- obsidian
 -- apply template `notes.md` to new notes
 keymap.set("n", "<leader>on", ":ObsidianTemplate notes<CR> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<CR>")
