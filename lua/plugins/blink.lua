@@ -14,6 +14,7 @@ return {
   {
     "saghen/blink.cmp",
     enabled = true,
+    build = vim.fn.has("win32") == 1 and 'pwsh -c "cargo build --release"' or "cargo build --release",
     opts_extend = {
       "sources.completion.enabled_providers",
       "sources.compat",
