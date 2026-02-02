@@ -80,9 +80,17 @@ return {
   { "nvim-mini/mini.icons" },
   {
     "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
     ---@type snacks.Config
     opts = {
+      -- dashboard = { enabled = true },
+      explorer = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true, timeout = 3000 },
+      statuscolumn = { enabled = true },
       picker = {
+        enabled = true,
         sources = {
           explorer = {
             layout = {
@@ -105,10 +113,53 @@ return {
       },
     },
     styles = {
+      enabled = true,
       snacks_image = {
+        enabled = true,
         relative = "editor",
         col = -1,
       },
     },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      local lualine = require("lualine")
+      lualine.setup({
+        options = {
+          icons_enabled = true,
+          theme = "auto",
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          always_show_tabline = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+            refresh_time = 16, -- ~60fps
+            events = {
+              "WinEnter",
+              "BufEnter",
+              "BufWritePost",
+              "SessionLoadPost",
+              "FileChangedShellPost",
+              "VimResized",
+              "Filetype",
+              "CursorMoved",
+              "CursorMovedI",
+              "ModeChanged",
+            },
+          },
+        },
+      })
+    end,
   },
 }
