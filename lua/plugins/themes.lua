@@ -70,6 +70,22 @@ return {
   --   lazy = false,
   --   priority = 1000,
   --   config = function()
+  --     local cyberdream = require("cyberdream")
+  --     cyberdream.setup({
+  --       variant = "auto",
+  --       transparent = false,
+  --       italic_comments = true,
+  --       hide_fillchars = true,
+  --       terminal_colors = false,
+  --       cache = true,
+  --       -- borderless_pickers = true,
+  --       overrides = function(c)
+  --         return {
+  --           CursorLine = { bg = c.bg },
+  --           CursorLineNr = { fg = c.magenta },
+  --         }
+  --       end,
+  --     })
   --     -- Missing Lualine Implementation
   --     vim.cmd("colorscheme cyberdream")
   --   end,
@@ -223,17 +239,18 @@ return {
       local bamboo = require("bamboo")
       -- local lualine = require("lualine")
       bamboo.setup({
-        mirage = true,
-        terminal = true,
-        overrides = {},
+        style = "vulgaris",
+        lualine = {
+          transparent = false,
+        },
       })
       -- lualine.setup({
       --   options = {
       --     theme = "bamboo",
       --   },
       -- })
-      -- bamboo.load()
-      vim.cmd("colorscheme bamboo")
+      bamboo.load()
+      -- vim.cmd("colorscheme bamboo")
     end,
   },
 }
