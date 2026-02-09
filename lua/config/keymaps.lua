@@ -65,7 +65,13 @@ keymap.set("n", "<C-w><left>", "<C-w><")
 keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
-
+-------------------------------------------------------
+--         Open HTML Files in Browser
+-------------------------------------------------------
+keymap.set("n", "<leader>O", function()
+  vim.ui.open(vim.fn.expand("%"))
+end, { desc = "Open in Browser" })
+----------------------------------------
 -- diagnostics
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.get_next({ buffer = 0, severity = vim.diagnostic.severity.ERROR })
