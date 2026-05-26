@@ -2,6 +2,11 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    lazy = false,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
+    main = "nvim-treesitter.configs",
     opts = {
       ensure_installed = {
         "astro",
@@ -41,7 +46,20 @@ return {
         },
       },
       sync_install = false,
-      modules = {},
     },
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "lewis6991/async.nvim",
+    },
+    config = function(_, opts)
+      local refactoring = require("refactoring")
+      refactoring.setup(opts)
+
+      --stylua: ignore
+    end,
   },
 }
